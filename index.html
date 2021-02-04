@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB to Hex Converter</title>
+    <style>
+#div-id {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+  width: 1000px;
+  margin: 160px auto;
+}
+
+#heading {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 42px;
+}
+
+#hex-label {
+  text-align: center;
+  margin-top: 80px;
+}
+
+table {
+  width: 100%;
+  font-size: 25px;
+}
+
+input[type="range"] {
+  width: 200px;
+  height: 50px;
+}
+    </style>
+</head>
+<body>
+    <h1 id="heading">RGB to hex color converter</h1>
+    <div id="div-id">
+        <table>
+            <tr>
+                <th>Red</th>
+                <th>Green</th>
+                <th>Blue</th>
+            </tr>
+            <tr>
+                <td><input type="range" min="0" max="255" value="255" id="red" onchange="utilityHelper()"></td>
+                <td><input type="range" min="0" max="255" value="255" id="green" onchange="utilityHelper()"></td>
+                <td><input type="range" min="0" max="255" value="255" id="blue" onchange="utilityHelper()"></td>
+            </tr>
+            <tr>
+                <td>[0-255]</td>
+                <td>[0-255]</td>
+                <td>[0-255]</td>
+            </tr>
+        </table>
+        <h1 id="hex-label">#ffffff</h1>
+    </div>
+    <script>
+    function hexValue(value) {
+      let hex = value.toString(16);
+      if (value < 16) {
+        hex = `0${hex}`;
+      }
+      return hex;
+    }
+
+    function utilityHelper() {
+      const red = parseInt(document.getElementById('red').value, 10);
+      const green = parseInt(document.getElementById('green').value, 10);
+      const blue = parseInt(document.getElementById('blue').value, 10);
+      const color = `#${hexValue(red)}${hexValue(green)}${hexValue(blue)}`;
+      document.body.style.backgroundColor = color;
+      document.getElementById("hex-label").innerHTML = color;
+      if (red < 95 && green < 95 && blue < 95) {
+        document.getElementById('div-id').style.color = 'white';
+        document.getElementById('heading').style.color = 'white';
+      } 
+      else {
+        document.getElementById('div-id').style.color = 'black';
+        document.getElementById('heading').style.color = 'black';
+      }
+    }
+    </script>
+</body>
+</html>
