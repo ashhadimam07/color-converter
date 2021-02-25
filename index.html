@@ -39,10 +39,9 @@
         </div>
         <div class="display-color"></div> 
         <label class="label">HEX color code</label>
-        <input  class="rgbvalue" placeholder="RRGGBB" readonly>
+        <input  class="hexvalue" placeholder="RRGGBB" readonly>
         <div class="button-wrapper">
           <button type="button" class="button">Convert</button>
-          <button type="reset" class="button">Reset</button>
           <button type="button" class="button copy">Copy</button>
         </div> 
       </div>
@@ -76,6 +75,79 @@
                 $('nav').toggleClass('active')
             })
         })
+    </script>
+    <script>
+      const redV = document.querySelector('.r-value');
+      const redslider = document.querySelector('.red-slider');
+      const greenV = document.querySelector('.g-value');
+      const greenslider = document.querySelector('.green-slider');
+      const blueV = document.querySelector('.b-value');
+      const blueslider = document.querySelector('.blue-slider');
+      const colorPreview = document.querySelector('.display-color');
+      const hexval = document.querySelector('.hexvalue');
+      const button = document.querySelector('.button');
+      const copyButton = document.querySelector('.copy');
+
+      const rgbToHex=(red,green,blue)=>'#'+[red,green,blue].map( val => {
+      val = parseInt(val, 10);
+      const hex = val.toString(16);
+      return hex.length==1?`0${hex}`:hex;
+      }).join('');
+
+      let red=0;
+      let green=0;
+      let blue=0;
+      let hexValue=0;
+
+      redslider.addEventListener('input', () => {
+        red = redslider.value;
+        redV.value = red;
+        hexValue=rgbToHex(red,green,blue);
+      });
+
+      redV.addEventListener('input',() => {
+        red = redV.value;
+        redslider.value = redV.value;
+        hexValue = rgbToHex(red,green,blue);
+      });
+
+      greenslider.addEventListener('input', () => {
+        green = greenslider.value;
+        greenV.value = green;
+        hexValue = rgbToHex(red,green,blue);
+      });
+
+      greenV.addEventListener('input',() => {
+        green = greenV.value;
+        greenslider.value = greenV.value;
+        hexValue = rgbToHex(red,green,blue);
+      });
+
+      blueslider.addEventListener('input', ()=> {
+        blue = blueslider.value;
+        blueV.value=blue;
+        hexValue = rgbToHex(red,green,blue);
+      });
+
+      blueV.addEventListener('input',()=>{
+        blue = blueV.value;
+        blueslider.value = blueV.value;
+        hexValue = rgbToHex(red,green,blue);
+      });
+
+      document.addEventListener('input', event => {
+        colorPreview.style.backgroundColor = hexValue;
+      });
+
+      button.addEventListener('click', () => {
+        hexval.value = hexValue;
+      });
+
+      copyButton.addEventListener('click', () => {
+        const copy=document.querySelector('.hexvalue');
+        copy.select();
+        document.execCommand("copy");
+      });
     </script>
 </body>
 </html>
