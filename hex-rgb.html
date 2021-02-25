@@ -23,9 +23,38 @@
     </header>
     <main>
       <h2 class="main-heading">HEX to RGB</h2>
+      <div class="div-wrapper"> 
+            <label class="label">HEX color code (#RRGGBB)</label>
+            <input type="text" class="hexvalue" placeholder="RRGGBB" maxlength="6">
+            <div class="display-color"></div> 
+            <label class="label">RGB color code</label>
+            <input  class="rgbvalue" placeholder="RGB(255,255,255)" readonly>
+            <div class="button-wrapper">
+                <button type="button" class="button">Convert</button>
+                <button type="reset" class="button">Reset</button>
+                <button type="button" class="button copy">Copy</button>
+            </div> 
+       </div>
+      <div class="content">
+        <h2>What do color converter offer?</h2>
+        <hr>
+        <br>
+        <ul>
+            <li>RGB to HEX converter</li>
+            <li>HEX to RGB converter </li>
+        </ul>
+        <br>
+        <h2>HEX to RGB converter</h2>
+        <hr>
+        <br>
+        <ul>
+            <li>It takes input in the form of a hex color code value and 
+              converts that value to a RGB value that can be used to specify color in web pages.</li>
+        </ul>
+      </div>
     </main>
     <footer class="footer">
-      <div class="footer-heading">WEB TOOLS: UNIT CONVERTER - HEX->RGB</div>
+      <div class="footer-heading">WEB TOOLS: COLOR CONVERTER</div>
   </footer>
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
     crossorigin="anonymous"></script>
