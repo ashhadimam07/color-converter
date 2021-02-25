@@ -24,14 +24,13 @@
     <main>
       <h2 class="main-heading">HEX to RGB</h2>
       <div class="div-wrapper"> 
-            <label class="label">HEX color code (#RRGGBB)</label>
-            <input type="text" class="hexvalue" placeholder="RRGGBB" maxlength="6">
+            <label class="label">HEX color code</label>
+            <input type="text" class="hexvalue" placeholder="#RRGGBB" maxlength="6">
             <div class="display-color"></div> 
             <label class="label">RGB color code</label>
-            <input  class="rgbvalue" placeholder="RGB(255,255,255)" readonly>
+            <input  class="rgbvalue" placeholder="rgb(255, 255, 255)" readonly>
             <div class="button-wrapper">
                 <button type="button" class="button">Convert</button>
-                <button type="reset" class="button">Reset</button>
                 <button type="button" class="button copy">Copy</button>
             </div> 
        </div>
@@ -65,6 +64,37 @@
                 $('nav').toggleClass('active')
             })
         })
+    </script>
+    <script>
+        const hexval = document.querySelector('.hexvalue');
+        const rgbval = document.querySelector('.rgbvalue');
+        const colorPreview = document.querySelector('.display-color');
+        const button = document.querySelector('.button');
+        const copyButton = document.querySelector('.copy');
+
+        function HexToRgb(hex) {
+            const red = parseInt(hex[0] + hex[1], 16);
+            const green = parseInt(hex[2] + hex[3], 16);
+            const blue = parseInt(hex[4] + hex[5], 16);
+            return [red, green, blue];
+        }
+
+        hexval.addEventListener('input',()=>{
+            let preview ='#'+ hexval.value;
+            colorPreview.style.backgroundColor = preview;
+        });
+
+        button.addEventListener('click', () => {
+            const rgbCode = HexToRgb(hexval.value);
+            const colorCode = `rgb(${rgbCode[0]}, ${rgbCode[1]}, ${rgbCode[2]})`;
+            rgbval.value = colorCode;
+        });
+
+        copyButton.addEventListener('click', () => {
+            const copy=document.querySelector('.rgbvalue');
+            copy.select();
+            document.execCommand("copy");
+        });
     </script>
 </body>
 </html>
