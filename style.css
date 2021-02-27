@@ -123,11 +123,6 @@ main {
   width: 100px;
 }
 
-.button:hover {
-  background-color: #e1bb80;
-  color: rgb(1, 54, 70);
-}
-
 .div-wrapper {
   display: flex;
   justify-content: center;
